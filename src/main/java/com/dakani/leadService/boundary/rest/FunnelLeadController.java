@@ -27,14 +27,9 @@ public class FunnelLeadController {
     @CrossOrigin(origins = "https://tier.guen-versicherung.de")
     @PostMapping("/funnels/animal-leads")
     public ResponseEntity<?> createAnimalLead(
-//            @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody AnimalLeadCreateDto animalLeadRequest
     ) {
         log.info("received an Animal lead create Request");
-//        if(!tokenService.isTokenValid("/funnels", auth)){
-//        log.info("The Request didn't have a valid Token {}", auth);
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("403 Forbidden");
-//        }
 
         Either<ExpectedError, AnimalLead> maybeAnimalLead = funnelLeadService.addAnimalLead(animalLeadRequest);
         if (maybeAnimalLead.isLeft()) {
@@ -50,14 +45,9 @@ public class FunnelLeadController {
     @CrossOrigin(origins = "https://whg.guen-versicherung.de")
     @PostMapping("/funnels/house-leads")
     public ResponseEntity<?> createHouseLead(
-//            @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody HouseLeadCreateDto houseLeadRequest
     ) {
         log.info("received a House lead create Request");
-//        if(!tokenService.isTokenValid("/funnels", auth)){
-//        log.info("The Request didn't have a valid Token {}", auth);
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("403 Forbidden");
-//        }
 
         Either<ExpectedError, HouseLead> maybeHouseLead = funnelLeadService.addHouseLead(houseLeadRequest);
         if (maybeHouseLead.isLeft()) {
@@ -73,14 +63,9 @@ public class FunnelLeadController {
     @CrossOrigin(origins = "https://zahn.guen-versicherung.de")
     @PostMapping("/funnels/teeth-leads")
     public ResponseEntity<?> createTeethLead(
-//            @RequestHeader(HttpHeaders.AUTHORIZATION) String auth,
             @RequestBody TeethLeadCreateDto teethLeadRequest
     ) {
         log.info("received a Teeth lead create Request");
-//        if(!tokenService.isTokenValid("/funnels", auth)){
-//        log.info("The Request didn't have a valid Token {}", auth);
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("403 Forbidden");
-//        }
 
         Either<ExpectedError, TeethLead> maybeTeethLead = funnelLeadService.addTeethLead(teethLeadRequest);
         if (maybeTeethLead.isLeft()) {
