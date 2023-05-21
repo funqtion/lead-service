@@ -31,7 +31,6 @@ public class DialFireAnimalRequestBody {
     private String Selbstbeteiligung___keine_10__20__;
     private String Vorsorgeschutz___Ja_Nein__Preis_;
     private String notiz;
-    private String Leadherkunft;
 
 
 
@@ -64,7 +63,6 @@ public class DialFireAnimalRequestBody {
             this.setSelbstbeteiligung___keine_10__20__(animalLead.getSelfContribution());
             this.setVorsorgeschutz___Ja_Nein__Preis_(animalLead.getPolicyType());
             this.setNotiz(animalLead.getExtraInfo());
-            this.setLeadherkunft("animalFunnel");
     }
 }
 

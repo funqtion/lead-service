@@ -26,7 +26,6 @@ public class DialFireTeethRequestBody {
     private String Zahn_Behandlung;
     private String fehlende_Zaehne;
     private String Absicherung_prozent;
-    private String Leadherkunft;
     private String notizfeld;
 
     public String get$phone() {
@@ -52,7 +51,6 @@ public class DialFireTeethRequestBody {
         this.setZahn_Behandlung(teethLead.getAlreadyInTreatment());
         this.setFehlende_Zaehne(teethLead.getMissingTeeth());
         this.setAbsicherung_prozent(teethLead.getCoverage());
-        this.setLeadherkunft("teethFunnel");
         this.setNotizfeld(teethLead.getExtraInfo());
     }
 

@@ -43,7 +43,6 @@ public class DialFireHouseRequestBody {
     private String schäden_letzten_5_Jahre;
     private String shäden_summe;
     private String notiz;
-    private String Leadherkunft;
 
     public String get$phone() {
         return $phone;
@@ -86,9 +85,6 @@ public class DialFireHouseRequestBody {
         this.setSchäden_letzten_5_Jahre(houseLead.getDamageFiveYears());
         this.setShäden_summe(houseLead.getDamageAmount());
         this.setNotiz(houseLead.getExtraInfo());
-        this.setLeadherkunft("houseFunnel");
     }
-
-
 
 }
