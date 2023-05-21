@@ -226,31 +226,31 @@ public class DialFireClient {
     private String generateUrl(String campaign) {
 
         String url;
-        if (campaign.equals("egentic")) {
-            this.headers.setBearerAuth(this.egenticCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.egenticCampaignId, this.taskIdAnrufen);
-
-        } else if (campaign.equals("finanzen")) {
-            this.headers.setBearerAuth(this.finanzenCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.finanzenCampaignId, this.taskIdAnrufen);
-        } else if (campaign.equals("animal")) {
-            this.headers.setBearerAuth(this.animalCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.animalCampaignId, this.taskIdAnrufen);
-        } else if (campaign.equals("teeth")) {
-            this.headers.setBearerAuth(this.teethCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.teethCampaignId, this.taskIdAnrufen);
-        } else if (campaign.equals("house")) {
-            this.headers.setBearerAuth(this.houseCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.houseCampaignId, this.taskIdAnrufen);
-        } else {
-            this.headers.setBearerAuth(this.collectorCampaignToken);
-
-            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.collectorCampaignId, this.taskIdAnrufen);
+        switch (campaign) {
+            case "egentic" -> {
+                this.headers.setBearerAuth(this.egenticCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.egenticCampaignId, this.taskIdAnrufen);
+            }
+            case "finanzen" -> {
+                this.headers.setBearerAuth(this.finanzenCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.finanzenCampaignId, this.taskIdAnrufen);
+            }
+            case "animal" -> {
+                this.headers.setBearerAuth(this.animalCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.animalCampaignId, this.taskIdAnrufen);
+            }
+            case "teeth" -> {
+                this.headers.setBearerAuth(this.teethCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.teethCampaignId, this.taskIdAnrufen);
+            }
+            case "house" -> {
+                this.headers.setBearerAuth(this.houseCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.houseCampaignId, this.taskIdAnrufen);
+            }
+            default -> {
+                this.headers.setBearerAuth(this.collectorCampaignToken);
+                url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.collectorCampaignId, this.taskIdAnrufen);
+            }
         }
         return url;
     }

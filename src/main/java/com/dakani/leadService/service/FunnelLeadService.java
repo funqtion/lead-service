@@ -36,10 +36,10 @@ public class FunnelLeadService {
         return animalLeadRepository.createLead(animalLead);
     }
 
-    public List<AnimalLead> getLeadsToPushToDialFire() {
+    public List<AnimalLead> getAnimalLeadsToPushToDialFire() {
         return animalLeadRepository.getLeadsToPushToDialFire();
     }
-    public List<AnimalLead> getLeadsToPushToKlickTipp() {
+    public List<AnimalLead> getAnimalLeadsToPushToKlickTipp() {
         return animalLeadRepository.getLeadsToPushToKlickTipp();
     }
     @Transactional
