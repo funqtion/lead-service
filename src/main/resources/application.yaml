@@ -1,0 +1,4 @@
+spring:
+  config:
+    name: application
+    location: file:/config/
