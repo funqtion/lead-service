@@ -43,31 +43,31 @@ public class DialFireScheduler {
             }
         }
 
-        List<AnimalLead> animalLeads = funnelLeadService.getAnimalLeadsToPushToDialFire();
-        if (animalLeads.size() > 0) {
-            log.info("found {} new animal leads to push to DialFire.", animalLeads.size());
-            for (AnimalLead lead : animalLeads) {
-                log.info("pushing animal lead with id {} to DialFire", lead.getId());
-                dialFireClient.pushNewAnimalLead(lead, "animal");
-            }
-        }
-
-        List<TeethLead> teethLeads = funnelLeadService.getTeethLeadsToPushToDialFire();
-        if (teethLeads.size() > 0) {
-            log.info("found {} new teeth leads to push to DialFire.", teethLeads.size());
-            for (TeethLead lead : teethLeads) {
-                log.info("pushing teeth lead with id {} to DialFire", lead.getId());
-                dialFireClient.pushNewTeethLead(lead, "teeth");
-            }
-        }
-
-        List<HouseLead> houseLeads = funnelLeadService.getHouseLeadsToPushToDialFire();
-        if (houseLeads.size() > 0) {
-            log.info("found {} new house leads to push to DialFire.", houseLeads.size());
-            for (HouseLead lead : houseLeads) {
-                log.info("pushing house lead with id {} to DialFire", lead.getId());
-                dialFireClient.pushNewHouseLead(lead, "house");
-            }
-        }
+//        List<AnimalLead> animalLeads = funnelLeadService.getAnimalLeadsToPushToDialFire();
+//        if (animalLeads.size() > 0) {
+//            log.info("found {} new animal leads to push to DialFire.", animalLeads.size());
+//            for (AnimalLead lead : animalLeads) {
+//                log.info("pushing animal lead with id {} to DialFire", lead.getId());
+//                dialFireClient.pushNewAnimalLead(lead, "animal");
+//            }
+//        }
+//
+//        List<TeethLead> teethLeads = funnelLeadService.getTeethLeadsToPushToDialFire();
+//        if (teethLeads.size() > 0) {
+//            log.info("found {} new teeth leads to push to DialFire.", teethLeads.size());
+//            for (TeethLead lead : teethLeads) {
+//                log.info("pushing teeth lead with id {} to DialFire", lead.getId());
+//                dialFireClient.pushNewTeethLead(lead, "teeth");
+//            }
+//        }
+//
+//        List<HouseLead> houseLeads = funnelLeadService.getHouseLeadsToPushToDialFire();
+//        if (houseLeads.size() > 0) {
+//            log.info("found {} new house leads to push to DialFire.", houseLeads.size());
+//            for (HouseLead lead : houseLeads) {
+//                log.info("pushing house lead with id {} to DialFire", lead.getId());
+//                dialFireClient.pushNewHouseLead(lead, "house");
+//            }
+//        }
     }
 }
