@@ -88,12 +88,14 @@ create table egentic_lead
 create table animal_lead
 (
     id                  INTEGER UNSIGNED AUTO_INCREMENT,
+    salutations         VARCHAR(250),
     firstName           VARCHAR(250),
     lastName            VARCHAR(250),
-    dob                 DATETIME,
+    dob                 VARCHAR(250),
     phone               VARCHAR(250),
     email               VARCHAR(250),
     street              VARCHAR(250),
+    houseNumber         VARCHAR(250),
     zipCode             VARCHAR(250),
     city                VARCHAR(250),
     animalType          VARCHAR(250),
@@ -115,12 +117,14 @@ create table animal_lead
 create table teeth_lead
 (
     id                  INTEGER UNSIGNED AUTO_INCREMENT,
+    salutations          VARCHAR(250),
     firstName           VARCHAR(250),
     lastName            VARCHAR(250),
-    dob                 DATETIME,
+    dob                 VARCHAR(250),
     phone               VARCHAR(250),
     email               VARCHAR(250),
     street              VARCHAR(250),
+    houseNumber         VARCHAR(250),
     zipCode             VARCHAR(250),
     city                VARCHAR(250),
     birthday            VARCHAR(250),
@@ -139,12 +143,14 @@ create table teeth_lead
 create table house_lead
 (
     id                  INTEGER UNSIGNED AUTO_INCREMENT,
+    salutations         VARCHAR(250),
     firstName           VARCHAR(250),
     lastName            VARCHAR(250),
-    dob                 DATETIME,
+    dob                 VARCHAR(250),
     phone               VARCHAR(250),
     email               VARCHAR(250),
     street              VARCHAR(250),
+    houseNumber         VARCHAR(250),
     zipCode             VARCHAR(250),
     city                VARCHAR(250),
     houseType           VARCHAR(250),

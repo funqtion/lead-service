@@ -24,12 +24,14 @@ public class TeethLead {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
+    private String salutations;
     private String firstName;
     private String lastName;
     private String dob;
     private String phone;
     private String email;
     private String street;
+    private String houseNumber;
     private String zipCode;
     private String city;
     private String birthday;
