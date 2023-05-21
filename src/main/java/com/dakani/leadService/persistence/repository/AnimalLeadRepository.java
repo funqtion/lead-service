@@ -31,7 +31,7 @@ public class AnimalLeadRepository {
     public Either<ExpectedError, AnimalLead> createLead(AnimalLead animalLead) {
         entityManager.persist(animalLead);
         LeadMeta leadMeta = new LeadMeta();
-        leadMeta.setType("funnel_animal");
+        leadMeta.setType("animal");
         leadMeta.setLeadId(animalLead.getId());
         leadMetaService.addLeadMeta(leadMeta);
         return Either.right(animalLead);
@@ -40,7 +40,7 @@ public class AnimalLeadRepository {
     public List<AnimalLead> getLeadsToPushToDialFire() {
         return entityManager
                 .createQuery("SELECT el FROM AnimalLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_animal' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'animal' " +
                         "WHERE lm.dialFire = false and lm.dialFireError = false", AnimalLead.class)
                 .getResultList();
     }
@@ -48,7 +48,7 @@ public class AnimalLeadRepository {
     public List<AnimalLead> getLeadsToPushToKlickTipp() {
         return entityManager
                 .createQuery("SELECT el FROM AnimalLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_animal' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'animal' " +
                         "WHERE lm.klickTipp = false and lm.klickTippError = false", AnimalLead.class)
                 .getResultList();
     }

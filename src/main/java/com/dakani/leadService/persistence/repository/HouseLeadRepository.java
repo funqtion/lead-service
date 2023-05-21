@@ -31,7 +31,7 @@ public class HouseLeadRepository {
     public Either<ExpectedError, HouseLead> createLead(HouseLead houseLead) {
         entityManager.persist(houseLead);
         LeadMeta leadMeta = new LeadMeta();
-        leadMeta.setType("funnel_house");
+        leadMeta.setType("house");
         leadMeta.setLeadId(houseLead.getId());
         leadMetaService.addLeadMeta(leadMeta);
         return Either.right(houseLead);
@@ -40,7 +40,7 @@ public class HouseLeadRepository {
     public List<HouseLead> getLeadsToPushToDialFire() {
         return entityManager
                 .createQuery("SELECT el FROM HouseLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_house' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'house' " +
                         "WHERE lm.dialFire = false and lm.dialFireError = false", HouseLead.class)
                 .getResultList();
     }
@@ -48,7 +48,7 @@ public class HouseLeadRepository {
     public List<HouseLead> getLeadsToPushToKlickTipp() {
         return entityManager
                 .createQuery("SELECT el FROM HouseLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_house' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'house' " +
                         "WHERE lm.klickTipp = false and lm.klickTippError = false", HouseLead.class)
                 .getResultList();
     }

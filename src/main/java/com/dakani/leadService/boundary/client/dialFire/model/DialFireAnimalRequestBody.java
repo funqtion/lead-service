@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class DialFireAnimalFunnelRequestBody {
+public class DialFireAnimalRequestBody {
     private String ansprache;
     private String vorname;
     private String nachname;
@@ -43,7 +43,7 @@ public class DialFireAnimalFunnelRequestBody {
         this.$phone = $phone;
     }
 
-    public DialFireAnimalFunnelRequestBody(AnimalLead animalLead){
+    public DialFireAnimalRequestBody(AnimalLead animalLead){
             this.setAnsprache(animalLead.getSalutations());
             this.setVorname(animalLead.getFirstName());
             this.setNachname(animalLead.getLastName());

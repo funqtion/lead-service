@@ -30,7 +30,7 @@ public class TeethLeadRepository {
     public Either<ExpectedError, TeethLead> createLead(TeethLead teethLead) {
         entityManager.persist(teethLead);
         LeadMeta leadMeta = new LeadMeta();
-        leadMeta.setType("funnel_teeth");
+        leadMeta.setType("teeth");
         leadMeta.setLeadId(teethLead.getId());
         leadMetaService.addLeadMeta(leadMeta);
         return Either.right(teethLead);
@@ -39,7 +39,7 @@ public class TeethLeadRepository {
     public List<TeethLead> getLeadsToPushToDialFire() {
         return entityManager
                 .createQuery("SELECT el FROM TeethLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_teeth' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'teeth' " +
                         "WHERE lm.dialFire = false and lm.dialFireError = false", TeethLead.class)
                 .getResultList();
     }
@@ -47,7 +47,7 @@ public class TeethLeadRepository {
     public List<TeethLead> getLeadsToPushToKlickTipp() {
         return entityManager
                 .createQuery("SELECT el FROM TeethLead AS el " +
-                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'funnel_teeth' " +
+                        "JOIN LeadMeta AS lm on lm.leadId = el.id and lm.type = 'teeth' " +
                         "WHERE lm.klickTipp = false and lm.klickTippError = false", TeethLead.class)
                 .getResultList();
     }

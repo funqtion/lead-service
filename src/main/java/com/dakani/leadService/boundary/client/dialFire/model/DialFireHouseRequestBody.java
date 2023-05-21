@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class DialFireHouseFunnelRequestBody {
+public class DialFireHouseRequestBody {
     private String Ansprache_whg;
     private String Vorname_whg;
     private String Nachname_whg;
@@ -53,7 +53,7 @@ public class DialFireHouseFunnelRequestBody {
         this.$phone = $phone;
     }
 
-    public DialFireHouseFunnelRequestBody(HouseLead houseLead) {
+    public DialFireHouseRequestBody(HouseLead houseLead) {
         this.setAnsprache_whg(houseLead.getSalutations());
         this.setVorname_whg(houseLead.getFirstName());
         this.setNachname_whg(houseLead.getLastName());

@@ -1,10 +1,8 @@
 package com.dakani.leadService.boundary.client.dialFire;
 
 
-import com.dakani.leadService.boundary.client.dialFire.model.DialFireEgenticRequestBody;
-import com.dakani.leadService.boundary.client.dialFire.model.DialFireFinanzenRequestBody;
-import com.dakani.leadService.persistence.entity.EgenticLead;
-import com.dakani.leadService.persistence.entity.FinanzenLead;
+import com.dakani.leadService.boundary.client.dialFire.model.*;
+import com.dakani.leadService.persistence.entity.*;
 import com.dakani.leadService.service.LeadMetaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,12 +31,24 @@ public class DialFireClient {
     private String egenticCampaignId;
     @Value("${dialFire.finanzenCampaignId}")
     private String finanzenCampaignId;
+    @Value("${dialFire.animalCampaignId}")
+    private String animalCampaignId;
+    @Value("${dialFire.teethCampaignId}")
+    private String teethCampaignId;
+    @Value("${dialFire.houseCampaignId}")
+    private String houseCampaignId;
+    @Value("${dialFire.collectorCampaignId}")
+    private String collectorCampaignId;
     @Value("${dialFire.egenticCampaignToken}")
     private String egenticCampaignToken;
     @Value("${dialFire.finanzenCampaignToken}")
     private String finanzenCampaignToken;
-    @Value("${dialFire.collectorCampaignId}")
-    private String collectorCampaignId;
+    @Value("${dialFire.animalCampaignToken}")
+    private String animalCampaignToken;
+    @Value("${dialFire.teethCampaignToken}")
+    private String teethCampaignToken;
+    @Value("${dialFire.houseCampaignToken}")
+    private String houseCampaignToken;
     @Value("${dialFire.collectorCampaignToken}")
     private String collectorCampaignToken;
     @Value("${dialFire.taskIdAnrufen}")
@@ -51,6 +61,63 @@ public class DialFireClient {
         this.headers.setContentType(MediaType.APPLICATION_JSON);
     }
 
+
+    public void pushNewAnimalLead(AnimalLead animalLead, String campaign) {
+        DialFireAnimalRequestBody dialFireAnimalRequestBody = new DialFireAnimalRequestBody(animalLead);
+
+        String url = generateUrl(campaign);
+
+        String requestBodyJson = generateRequestBodyInJson(dialFireAnimalRequestBody);
+
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            log.info("successfully pushed animal lead with id {} to DialFire", animalLead.getId());
+            handleSuccessfulRequest("animal", animalLead.getId());
+        } else {
+            log.warn("failed to push animal lead with id {} to DialFire. encountered error {}", animalLead.getId(), response.getBody());
+            handleFailedRequest("animal", animalLead.getId());
+        }
+    }
+
+    public void pushNewTeethLead(TeethLead teethLead, String campaign) {
+        DialFireTeethRequestBody dialFireTeethRequestBody = new DialFireTeethRequestBody(teethLead);
+
+        String url = generateUrl(campaign);
+
+        String requestBodyJson = generateRequestBodyInJson(dialFireTeethRequestBody);
+
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            log.info("successfully pushed teeth lead with id {} to DialFire", teethLead.getId());
+            handleSuccessfulRequest("teeth", teethLead.getId());
+        } else {
+            log.warn("failed to push teeth lead with id {} to DialFire. encountered error {}", teethLead.getId(), response.getBody());
+            handleFailedRequest("teeth", teethLead.getId());
+        }
+    }
+
+    public void pushNewHouseLead(HouseLead houseLead, String campaign) {
+        DialFireHouseRequestBody dialFireHouseRequestBody = new DialFireHouseRequestBody(houseLead);
+
+        String url = generateUrl(campaign);
+
+        String requestBodyJson = generateRequestBodyInJson(dialFireHouseRequestBody);
+
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            log.info("successfully pushed house lead with id {} to DialFire", houseLead.getId());
+            handleSuccessfulRequest("house", houseLead.getId());
+        } else {
+            log.warn("failed to push house lead with id {} to DialFire. encountered error {}", houseLead.getId(), response.getBody());
+            handleFailedRequest("house", houseLead.getId());
+        }
+    }
     public void pushNewFinanzenLead(FinanzenLead finanzenLead, String campaign) {
         DialFireFinanzenRequestBody dialFireFinanzenRequestBody = new DialFireFinanzenRequestBody(finanzenLead);
 
@@ -106,6 +173,36 @@ public class DialFireClient {
         return response;
     }
 
+    private String generateRequestBodyInJson(DialFireAnimalRequestBody dialFireAnimalRequestBody) {
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(dialFireAnimalRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return requestBodyInJson;
+    }
+
+    private String generateRequestBodyInJson(DialFireTeethRequestBody dialFireTeethRequestBody) {
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(dialFireTeethRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return requestBodyInJson;
+    }
+
+    private String generateRequestBodyInJson(DialFireHouseRequestBody dialFireHouseRequestBody) {
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(dialFireHouseRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return requestBodyInJson;
+    }
+
     private String generateRequestBodyInJson(DialFireEgenticRequestBody dialFireEgenticRequestBody) {
         String requestBodyInJson;
         try {
@@ -138,7 +235,18 @@ public class DialFireClient {
             this.headers.setBearerAuth(this.finanzenCampaignToken);
 
             url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.finanzenCampaignId, this.taskIdAnrufen);
+        } else if (campaign.equals("animal")) {
+            this.headers.setBearerAuth(this.animalCampaignToken);
 
+            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.animalCampaignId, this.taskIdAnrufen);
+        } else if (campaign.equals("teeth")) {
+            this.headers.setBearerAuth(this.teethCampaignToken);
+
+            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.teethCampaignId, this.taskIdAnrufen);
+        } else if (campaign.equals("house")) {
+            this.headers.setBearerAuth(this.houseCampaignToken);
+
+            url = this.baseUrl + String.format("/api/campaigns/%s/tasks/%s/contacts/create", this.houseCampaignId, this.taskIdAnrufen);
         } else {
             this.headers.setBearerAuth(this.collectorCampaignToken);
 
@@ -148,7 +256,6 @@ public class DialFireClient {
     }
 
     public void handleSuccessfulRequest(String type, long id) {
-
         leadMetaService.updateLeadStateDialFire(type, id, true);
     }
 
