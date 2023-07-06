@@ -127,7 +127,6 @@ create table teeth_lead
     houseNumber         VARCHAR(250),
     zipCode             VARCHAR(250),
     city                VARCHAR(250),
-    birthday            VARCHAR(250),
     publicInsurance     VARCHAR(250),
     alreadyInTreatment  VARCHAR(250),
     missingTeeth        VARCHAR(250),

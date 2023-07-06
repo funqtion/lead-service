@@ -14,7 +14,7 @@ public class DialFireTeethRequestBody {
     private String ansprache;
     private String vorname;
     private String nachname;
-    private String Geburtstag;
+    private String geburtstag;
     private String $phone;
     private String Telefonnummer;
     private String email;

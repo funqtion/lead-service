@@ -42,28 +42,35 @@ public class DialFireAnimalRequestBody {
         this.$phone = $phone;
     }
 
-    public DialFireAnimalRequestBody(AnimalLead animalLead){
-            this.setAnsprache(animalLead.getSalutations());
-            this.setVorname(animalLead.getFirstName());
-            this.setNachname(animalLead.getLastName());
-            this.setGeburtstag(animalLead.getDob());
-            this.set$phone(animalLead.getPhone());
-            this.setTelefonnummer(animalLead.getPhone());
-            this.setEmail(animalLead.getEmail());
-            this.setStrasse(animalLead.getStreet());
-            this.setAdresszusatz(animalLead.getHouseNumber());
-            this.setPlz(animalLead.getZipCode());
-            this.setOrt(animalLead.getCity());
-            this.setTierArt(animalLead.getAnimalType());
-            this.setTierName(animalLead.getAnimalName());
-            this.setGeburtstag_Tier(animalLead.getAnimalAge());
-            this.setGeschlecht(animalLead.getAnimalGender());
-            this.setRasse(animalLead.getAnimalBreed());
-            this.setKastriert_sterilisiert(animalLead.getAnimalCastration());
-            this.setSelbstbeteiligung___keine_10__20__(animalLead.getSelfContribution());
-            this.setVorsorgeschutz___Ja_Nein__Preis_(animalLead.getPolicyType());
-            this.setNotiz(animalLead.getExtraInfo());
+    public DialFireAnimalRequestBody(AnimalLead animalLead) {
+        this.setAnsprache(animalLead.getSalutations());
+        this.setVorname(animalLead.getFirstName());
+        this.setNachname(animalLead.getLastName());
+        this.setGeburtstag(animalLead.getDob());
+        this.set$phone(animalLead.getPhone());
+        this.setTelefonnummer(animalLead.getPhone());
+        this.setEmail(animalLead.getEmail());
+        this.setStrasse(animalLead.getStreet());
+        this.setAdresszusatz(animalLead.getHouseNumber());
+        this.setPlz(animalLead.getZipCode());
+        this.setOrt(animalLead.getCity());
+        this.setTierArt(animalLead.getAnimalType());
+        this.setTierName(animalLead.getAnimalName());
+        this.setGeburtstag_Tier(animalLead.getAnimalAge());
+        this.setGeschlecht(animalLead.getAnimalGender());
+        this.setRasse(animalLead.getAnimalBreed());
+        this.setKastriert_sterilisiert(animalLead.getAnimalCastration());
+        this.setSelbstbeteiligung___keine_10__20__(animalLead.getSelfContribution());
+        this.setNotiz(animalLead.getExtraInfo());
+
+        switch (animalLead.getPolicyType()) {
+            case "Vollschutz mit Operation amb. Behandlung und Vorsorgeleistungen" ->
+                    this.setVorsorgeschutz___Ja_Nein__Preis_("Ja");
+            case "Reiner Op - Schutz" -> this.setVorsorgeschutz___Ja_Nein__Preis_("Nein");
+        }
     }
+
+
 }
 
 

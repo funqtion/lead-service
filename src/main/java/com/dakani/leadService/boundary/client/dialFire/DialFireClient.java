@@ -31,7 +31,7 @@ public class DialFireClient {
     private String egenticCampaignId;
     @Value("${dialFire.finanzenCampaignId}")
     private String finanzenCampaignId;
-    @Value("${dialFire.animalCampaignId}")
+    @Value("${dialFire.finanzenCampaignId}")
     private String animalCampaignId;
     @Value("${dialFire.teethCampaignId}")
     private String teethCampaignId;
@@ -43,7 +43,7 @@ public class DialFireClient {
     private String egenticCampaignToken;
     @Value("${dialFire.finanzenCampaignToken}")
     private String finanzenCampaignToken;
-    @Value("${dialFire.animalCampaignToken}")
+    @Value("${dialFire.finanzenCampaignToken}")
     private String animalCampaignToken;
     @Value("${dialFire.teethCampaignToken}")
     private String teethCampaignToken;

@@ -34,7 +34,6 @@ public class TeethLead {
     private String houseNumber;
     private String zipCode;
     private String city;
-    private String birthday;
     private String publicInsurance;
     private String alreadyInTreatment;
     private String missingTeeth;
