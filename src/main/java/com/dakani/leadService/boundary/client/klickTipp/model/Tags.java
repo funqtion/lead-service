@@ -15,7 +15,11 @@ public enum Tags {
     pferd("8472361"),
     zusatz("8472367"),
     gewerbehaftpflicht("8472376"),
-    gewerbe("8472377"),;
+    gewerbe("8472377"),
+    rechtsschutz("8551382"),
+    privatehaftpflicht("8551372"),
+    hundehalterhaftpflicht("9195477"),
+    hausrat("8551377"),;
     private final String id;
     Tags(String id) {
         this.id = id;

@@ -33,7 +33,7 @@ public class KlickTippTags {
             this.tagids.add(Tags.feiertage_mann.getId());
         }
         for (Tags key : Tags.values()) {
-            if (finanzenLead.getSubject().toLowerCase().contains(key.name())) {
+            if (finanzenLead.getSubject().toLowerCase().replaceAll("\\s", "").contains(key.name())) {
                 this.tagids.add(key.getId());
             }
         }
