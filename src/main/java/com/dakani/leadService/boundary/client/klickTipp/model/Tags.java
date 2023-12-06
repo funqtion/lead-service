@@ -19,7 +19,12 @@ public enum Tags {
     rechtsschutz("8551382"),
     privatehaftpflicht("8551372"),
     hundehalterhaftpflicht("9195477"),
-    hausrat("8551377"),;
+    hausrat("8551377"),
+    unfall("10916888"),
+    kfz("10916921"),
+    pferdehaft("10916930"),
+    berufsunfaehigkeit("10916963"),
+    geldanlage("10916969"),;
     private final String id;
     Tags(String id) {
         this.id = id;
@@ -28,4 +33,4 @@ public enum Tags {
     public String getId() {
         return id;
     }
-}
+    }
