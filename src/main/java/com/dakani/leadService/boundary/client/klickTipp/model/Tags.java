@@ -9,7 +9,7 @@ public enum Tags {
     finanzen_de("8466566"),
     egentic_de("9582773"),
     gebäude("8470942"),
-    sachversicherungen("8470942"),
+    sachversicherungen("10938213"),
     hund("8472359"),
     katze("8472360"),
     pferd("8472361"),
