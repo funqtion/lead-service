@@ -1,7 +1,6 @@
 package com.dakani.leadService.boundary.client.klickTipp.model;
 
-import com.dakani.leadService.persistence.entity.EgenticLead;
-import com.dakani.leadService.persistence.entity.FinanzenLead;
+import com.dakani.leadService.persistence.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -52,5 +51,56 @@ public class KlickTippTags {
         }
     }
 
+    public KlickTippTags(AnimalLead animalLead) {
+        this.email = animalLead.getEmail();
+        this.tagids = new ArrayList<>();
+        this.tagids.add(Tags.sie_anrede.getId());
+        this.tagids.add(Tags.geburtstag_glueckwunsch.getId());
+        this.tagids.add(Tags.newsletter.getId());
+        if (animalLead.getSalutations().toLowerCase().contains("frau")) {
+            this.tagids.add(Tags.feiertage_frau.getId());
+        }
+        if (animalLead.getSalutations().toLowerCase().contains("herr")) {
+            this.tagids.add(Tags.feiertage_mann.getId());
+        }
+        switch (animalLead.getAnimalType().toLowerCase()) {
+            case "dog":
+                this.tagids.add(Tags.hund.getId());
+                break;
+            case "cat":
+                this.tagids.add(Tags.katze.getId());
+                break;
+            case "horse":
+                this.tagids.add(Tags.pferd.getId());
+                break;
+        }
+    }
 
+    public KlickTippTags(TeethLead teethLead) {
+        this.email = teethLead.getEmail();
+        this.tagids = new ArrayList<>();
+        this.tagids.add(Tags.sie_anrede.getId());
+        this.tagids.add(Tags.geburtstag_glueckwunsch.getId());
+        this.tagids.add(Tags.newsletter.getId());
+        if (teethLead.getSalutations().toLowerCase().contains("frau")) {
+            this.tagids.add(Tags.feiertage_frau.getId());
+        }
+        if (teethLead.getSalutations().toLowerCase().contains("herr")) {
+            this.tagids.add(Tags.feiertage_mann.getId());
+        }
+    }
+
+    public KlickTippTags(HouseLead houseLead) {
+        this.email = houseLead.getEmail();
+        this.tagids = new ArrayList<>();
+        this.tagids.add(Tags.sie_anrede.getId());
+        this.tagids.add(Tags.geburtstag_glueckwunsch.getId());
+        this.tagids.add(Tags.newsletter.getId());
+        if (houseLead.getSalutations().toLowerCase().contains("frau")) {
+            this.tagids.add(Tags.feiertage_frau.getId());
+        }
+        if (houseLead.getSalutations().toLowerCase().contains("herr")) {
+            this.tagids.add(Tags.feiertage_mann.getId());
+        }
+    }
 }

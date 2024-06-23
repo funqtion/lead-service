@@ -1,11 +1,7 @@
 package com.dakani.leadService.boundary.client.klickTipp;
 
-import com.dakani.leadService.boundary.client.klickTipp.model.KlickTippAuth;
-import com.dakani.leadService.boundary.client.klickTipp.model.KlickTippEgenticRequestBody;
-import com.dakani.leadService.boundary.client.klickTipp.model.KlickTippFinanzenRequestBody;
-import com.dakani.leadService.boundary.client.klickTipp.model.KlickTippTags;
-import com.dakani.leadService.persistence.entity.EgenticLead;
-import com.dakani.leadService.persistence.entity.FinanzenLead;
+import com.dakani.leadService.boundary.client.klickTipp.model.*;
+import com.dakani.leadService.persistence.entity.*;
 import com.dakani.leadService.service.LeadMetaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -107,6 +103,96 @@ public class KlickTippClient {
         } else {
             handleFailedRequest("finanzen", finanzenLead.getId());
             log.warn("failed to push finanzen lead to KlickTipp. encountered error {}", response.getBody());
+        }
+    }
+
+    public void pushAnimalFunnelLead(AnimalLead animalLead){
+        KlickTippAnimalLeadRequestBody klickTippAnimalRequestBody = new KlickTippAnimalLeadRequestBody(animalLead);
+        String url = this.baseUrl + this.subscribeUrl;
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(klickTippAnimalRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyInJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            KlickTippTags klickTippTags = new KlickTippTags(animalLead);
+            ResponseEntity<String> tagResponseEntity = this.pushTags(klickTippTags);
+            if (tagResponseEntity.getStatusCode().is2xxSuccessful()) {
+
+                handleSuccessfulRequest("animal", animalLead.getId());
+
+                log.info("successfully pushed animal lead to KlickTipp");
+            } else {
+                handleFailedRequest("animal", animalLead.getId());
+                log.warn("failed to push tags to KlickTipp. encountered error {}", tagResponseEntity.getBody());
+            }
+        } else {
+            handleFailedRequest("animal", animalLead.getId());
+            log.warn("failed to push animal lead to KlickTipp. encountered error {}", response.getBody());
+        }
+    }
+
+    public void pushTeethFunnelLead(TeethLead teethLead){
+        KlickTippTeethLeadRequestBody klickTippTeethRequestBody = new KlickTippTeethLeadRequestBody(teethLead);
+        String url = this.baseUrl + this.subscribeUrl;
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(klickTippTeethRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyInJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            KlickTippTags klickTippTags = new KlickTippTags(teethLead);
+            ResponseEntity<String> tagResponseEntity = this.pushTags(klickTippTags);
+            if (tagResponseEntity.getStatusCode().is2xxSuccessful()) {
+
+                handleSuccessfulRequest("teeth", teethLead.getId());
+
+                log.info("successfully pushed teeth lead to KlickTipp");
+            } else {
+                handleFailedRequest("teeth", teethLead.getId());
+                log.warn("failed to push tags to KlickTipp. encountered error {}", tagResponseEntity.getBody());
+            }
+        } else {
+            handleFailedRequest("teeth", teethLead.getId());
+            log.warn("failed to push teeth lead to KlickTipp. encountered error {}", response.getBody());
+        }
+    }
+
+    public void pushHouseFunnelLead(HouseLead houseLead){
+        KlickTippHouseLeadRequestBody klickTippHouseRequestBody = new KlickTippHouseLeadRequestBody(houseLead);
+        String url = this.baseUrl + this.subscribeUrl;
+        String requestBodyInJson;
+        try {
+            requestBodyInJson = this.mapper.writeValueAsString(klickTippHouseRequestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        HttpEntity<String> request = new HttpEntity<String>(requestBodyInJson, this.headers);
+
+        ResponseEntity<String> response = postForEntity(url, request);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            KlickTippTags klickTippTags = new KlickTippTags(houseLead);
+            ResponseEntity<String> tagResponseEntity = this.pushTags(klickTippTags);
+            if (tagResponseEntity.getStatusCode().is2xxSuccessful()) {
+
+                handleSuccessfulRequest("house", houseLead.getId());
+
+                log.info("successfully pushed house lead to KlickTipp");
+            } else {
+                handleFailedRequest("house", houseLead.getId());
+                log.warn("failed to push tags to KlickTipp. encountered error {}", tagResponseEntity.getBody());
+            }
+        } else {
+            handleFailedRequest("house", houseLead.getId());
+            log.warn("failed to push house lead to KlickTipp. encountered error {}", response.getBody());
         }
     }
 
