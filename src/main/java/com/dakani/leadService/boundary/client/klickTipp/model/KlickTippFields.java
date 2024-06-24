@@ -129,13 +129,10 @@ public class KlickTippFields {
     private String swimmingPool;
     @JsonProperty("field173188")
     private String extraHouse;
-
-//    These two fiels need to be set to a new fieldId when changed to String
-    @JsonProperty("field206805")
+    @JsonProperty("field206832")
     private String extraHouseArea;
-    @JsonProperty("field206806")
+    @JsonProperty("field206833")
     private String damageFiveYears;
-// until here
     @JsonProperty("field195944")
     private String damageAmount;
 }

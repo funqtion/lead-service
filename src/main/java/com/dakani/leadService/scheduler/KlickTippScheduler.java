@@ -70,15 +70,15 @@ public class KlickTippScheduler {
             klickTippClient.logOut();
         }
 
-//        List<HouseLead> houseLeads = funnelLeadService.getHouseLeadsToPushToKlickTipp();
-//        if (houseLeads.size() > 0) {
-//            klickTippClient.logIn();
-//            log.info("found {} new house leads to push to KlickTipp.", houseLeads.size());
-//            for (HouseLead lead : houseLeads) {
-//                log.info("pushing house lead with id {} to KlickTipp", lead.getId());
-//                klickTippClient.pushHouseFunnelLead(lead);
-//            }
-//            klickTippClient.logOut();
-//        }
+        List<HouseLead> houseLeads = funnelLeadService.getHouseLeadsToPushToKlickTipp();
+        if (houseLeads.size() > 0) {
+            klickTippClient.logIn();
+            log.info("found {} new house leads to push to KlickTipp.", houseLeads.size());
+            for (HouseLead lead : houseLeads) {
+                log.info("pushing house lead with id {} to KlickTipp", lead.getId());
+                klickTippClient.pushHouseFunnelLead(lead);
+            }
+            klickTippClient.logOut();
+        }
     }
 }
