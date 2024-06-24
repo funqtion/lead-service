@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,7 +52,13 @@ public class KlickTippHouseLeadRequestBody {
         klickTippFields.setExtraHouse(houseLead.getExtraHouse());
         klickTippFields.setExtraHouseArea(houseLead.getExtraHouseArea());
         klickTippFields.setDamageFiveYears(houseLead.getDamageFiveYears());
-        klickTippFields.setDamageAmount(Integer.parseInt(houseLead.getDamageAmount()));
+
+        int parsedDamageAmount = Optional.ofNullable(houseLead.getDamageAmount())
+            .filter(str -> !str.isEmpty() && str.matches("\\d+"))
+            .map(Integer::parseInt)
+            .orElse(0);
+
+        klickTippFields.setDamageAmount(parsedDamageAmount);
         this.setEmail(houseLead.getEmail());
         this.setListId("254408");
         this.setFields(klickTippFields);
