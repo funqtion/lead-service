@@ -50,7 +50,7 @@ public class KlickTippHouseLeadRequestBody {
         klickTippFields.setExtraHouse(houseLead.getExtraHouse());
         klickTippFields.setExtraHouseArea(houseLead.getExtraHouseArea());
         klickTippFields.setDamageFiveYears(houseLead.getDamageFiveYears());
-        klickTippFields.setDamageAmount(houseLead.getDamageAmount());
+        klickTippFields.setDamageAmount(Integer.parseInt(houseLead.getDamageAmount()));
         this.setEmail(houseLead.getEmail());
         this.setListId("254408");
         this.setFields(klickTippFields);

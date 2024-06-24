@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+import static java.time.ZoneOffset.UTC;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,21 +39,27 @@ public class KlickTippAnimalLeadRequestBody {
         klickTippFields.setData(animalLead.getExtraInfo());
         switch (animalLead.getAnimalType()) {
             case "dog":
-                klickTippFields.setDogAge(LocalDate.parse(animalLead.getAnimalAge()));
+                LocalDate dogDob = LocalDate.parse(animalLead.getAnimalAge());
+                long dogDobEpoch = dogDob.atStartOfDay().toEpochSecond(UTC);
+                klickTippFields.setDogAge(dogDobEpoch);
                 klickTippFields.setDogBreed(animalLead.getAnimalBreed());
                 klickTippFields.setDogGender(animalLead.getAnimalGender());
                 klickTippFields.setDogCastrated(animalLead.getAnimalCastration());
                 klickTippFields.setDogSelfContribution(animalLead.getSelfContribution());
                 break;
             case "cat":
-                klickTippFields.setCatAge(LocalDate.parse(animalLead.getAnimalAge()));
+                LocalDate catDob = LocalDate.parse(animalLead.getAnimalAge());
+                long catDobEpoch = catDob.atStartOfDay().toEpochSecond(UTC);
+                klickTippFields.setCatAge(catDobEpoch);
                 klickTippFields.setCatBreed(animalLead.getAnimalBreed());
                 klickTippFields.setCatGender(animalLead.getAnimalGender());
                 klickTippFields.setCatCastrated(animalLead.getAnimalCastration());
                 klickTippFields.setCatSelfContribution(animalLead.getSelfContribution());
                 break;
             case "horse":
-                klickTippFields.setHorseAge(LocalDate.parse(animalLead.getAnimalAge()));
+                LocalDate horseDob = LocalDate.parse(animalLead.getAnimalAge());
+                long horseDobEpoch = horseDob.atStartOfDay().toEpochSecond(UTC);
+                klickTippFields.setHorseAge(horseDobEpoch);
                 klickTippFields.setHorseBreed(animalLead.getAnimalBreed());
                 klickTippFields.setHorseGender(animalLead.getAnimalGender());
                 klickTippFields.setHorseCastrated(animalLead.getAnimalCastration());

@@ -48,29 +48,31 @@ public class KlickTippScheduler {
             klickTippClient.logOut();
         }
 
-        List<AnimalLead> animalLeads = funnelLeadService.getAnimalLeadsToPushToKlickTipp();
-        if (animalLeads.size() > 0) {
-            klickTippClient.logIn();
-            log.info("found {} new animal leads to push to KlickTipp.", animalLeads.size());
-            for (AnimalLead lead : animalLeads) {
-                log.info("pushing animal lead with id {} to KlickTipp", lead.getId());
-                klickTippClient.pushAnimalFunnelLead(lead);
-            }
-            klickTippClient.logOut();
-        }
-
-        List<TeethLead> teethLeads = funnelLeadService.getTeethLeadsToPushToKlickTipp();
-        if (teethLeads.size() > 0) {
-            klickTippClient.logIn();
-            log.info("found {} new teeth leads to push to KlickTipp.", teethLeads.size());
-            for (TeethLead lead : teethLeads) {
-                log.info("pushing teeth lead with id {} to KlickTipp", lead.getId());
-                klickTippClient.pushTeethFunnelLead(lead);
-            }
-            klickTippClient.logOut();
-        }
+//        List<AnimalLead> animalLeads = funnelLeadService.getAnimalLeadsToPushToKlickTipp();
+//        if (animalLeads.size() > 0) {
+//            klickTippClient.logIn();
+//            log.info("found {} new animal leads to push to KlickTipp.", animalLeads.size());
+//            for (AnimalLead lead : animalLeads) {
+//                log.info("pushing animal lead with id {} to KlickTipp", lead.getId());
+//                klickTippClient.pushAnimalFunnelLead(lead);
+//            }
+//            klickTippClient.logOut();
+//        }
+//
+//        List<TeethLead> teethLeads = funnelLeadService.getTeethLeadsToPushToKlickTipp();
+//        if (teethLeads.size() > 0) {
+//            klickTippClient.logIn();
+//            log.info("found {} new teeth leads to push to KlickTipp.", teethLeads.size());
+//            for (TeethLead lead : teethLeads) {
+//                log.info("pushing teeth lead with id {} to KlickTipp", lead.getId());
+//                klickTippClient.pushTeethFunnelLead(lead);
+//            }
+//            klickTippClient.logOut();
+//        }
 
         List<HouseLead> houseLeads = funnelLeadService.getHouseLeadsToPushToKlickTipp();
+        log.info("found {} new house leads to push to KlickTipp.", houseLeads.size());
+
         if (houseLeads.size() > 0) {
             klickTippClient.logIn();
             log.info("found {} new house leads to push to KlickTipp.", houseLeads.size());

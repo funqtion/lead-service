@@ -6,9 +6,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -55,11 +52,11 @@ public class KlickTippFields {
     @JsonProperty("field157203")
     private String animalName;
     @JsonProperty("field171228")
-    private LocalDate dogAge;
+    private Long dogAge;
     @JsonProperty("field171431")
-    private LocalDate catAge;
+    private Long catAge;
     @JsonProperty("field171435")
-    private LocalDate horseAge;
+    private Long horseAge;
     @JsonProperty("field171231")
     private String dogBreed;
     @JsonProperty("field171006")
@@ -137,5 +134,5 @@ public class KlickTippFields {
     @JsonProperty("field206833")
     private String damageFiveYears;
     @JsonProperty("field195944")
-    private String damageAmount;
+    private Integer damageAmount;
 }
