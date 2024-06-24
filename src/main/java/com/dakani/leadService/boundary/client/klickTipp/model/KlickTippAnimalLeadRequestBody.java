@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,21 +37,21 @@ public class KlickTippAnimalLeadRequestBody {
         klickTippFields.setData(animalLead.getExtraInfo());
         switch (animalLead.getAnimalType()) {
             case "dog":
-                klickTippFields.setDogAge(animalLead.getAnimalAge());
+                klickTippFields.setDogAge(LocalDate.parse(animalLead.getAnimalAge()));
                 klickTippFields.setDogBreed(animalLead.getAnimalBreed());
                 klickTippFields.setDogGender(animalLead.getAnimalGender());
                 klickTippFields.setDogCastrated(animalLead.getAnimalCastration());
                 klickTippFields.setDogSelfContribution(animalLead.getSelfContribution());
                 break;
             case "cat":
-                klickTippFields.setCatAge(animalLead.getAnimalAge());
+                klickTippFields.setCatAge(LocalDate.parse(animalLead.getAnimalAge()));
                 klickTippFields.setCatBreed(animalLead.getAnimalBreed());
                 klickTippFields.setCatGender(animalLead.getAnimalGender());
                 klickTippFields.setCatCastrated(animalLead.getAnimalCastration());
                 klickTippFields.setCatSelfContribution(animalLead.getSelfContribution());
                 break;
             case "horse":
-                klickTippFields.setHorseAge(animalLead.getAnimalAge());
+                klickTippFields.setHorseAge(LocalDate.parse(animalLead.getAnimalAge()));
                 klickTippFields.setHorseBreed(animalLead.getAnimalBreed());
                 klickTippFields.setHorseGender(animalLead.getAnimalGender());
                 klickTippFields.setHorseCastrated(animalLead.getAnimalCastration());
